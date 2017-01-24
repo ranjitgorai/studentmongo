@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+    
+
+    
+
+  </head>
+ <body>
+ <br/>
+ <div class="container">
+<table class="table table-bordered table-striped">
+   <tr class="info">
+       <td>SL_NO</td>
+	   <td>Registration_Number</td>
+	   <td>Roll_Number</td>
+	   <td>Name </td> 
+	   
+	   <td>Age</td>
+	   <td>College_Name</td>
+	   <td>Address</td>
+	   
+	   <td>Action</td>
+   </tr>
+    <% students.forEach(function (el, idx) { %>
+    	<tr>
+    	    <td><%= idx + 1 %></td>
+   			<td> <%= el.regno %></td>
+   			<td><%= el.rollno %></td>
+   			<td><%= el.name.firstname + "   " + el.name.lastname %></td>
+   			
+   			
+   			<td><%= el.age %></td>
+   			<td><%= el.collegename%></td>
+   			<td><%= el.address.city +" , " + el.address.state + ",  "+ el.address.country%></td>
+   			
+   			
+   			<td> <button type="button" class="btn btn-success edit-btn" data-student-id="<%=el._id %>"> Edit</button>
+   			      <button type="button" class="btn btn-danger delete-btn" data-student-id="<%=el._id %>"> Delete</button>
+   			</td>
+   		</tr>
+   	 <% }) %>
+
+   </table>
+   </div>
+
+   <script type="text/javascript">
+   	  
+   	       $('.edit-btn').click(function(el){
+
+   	       	   el.preventDefault();
+   	       	   window.location.href = "/student/edit/" + $(this).data('student-id');
+   	       });
+
+
+
+          $('.delete-btn').click(function(el){
+          	 
+
+   	       	   el.preventDefault();
+   	       	   $.ajax({
+   	       	   	       method: "DELETE",
+   	       	   	       url: "/student/"+$(this).data('student-id'),
+   	       	   	       success : function(result){
+   	       	   	       	        console.log(result);
+   	       	   	       	        if(!result.error) {
+   	       	   	       	        	window.location.reload();
+   	       	   	       	        } else{
+   	       	   	       	        	alert("oops!!!");
+   	       	   	       	        }
+   	       	   	                }
+   	       	        });
+
+   	       });
+
+
+   </script>
+
+
+
+
+ </body>
+
+ </html>

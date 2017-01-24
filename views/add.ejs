@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+    
+
+    
+
+  </head>
+		  <body>
+		  <br>
+           
+           <div class="container well well-lg">
+
+
+                  <form class="form-horizontal" role="form" id="myform" >
+                           
+                   <div class="col-sm-6">
+
+			                               <div class="form-group">
+												      <label class="col-sm-2 control-label">Reg_No<span id="lblname" style="color: red"></span></label>
+												      <div class="col-sm-7">
+												           <input class="form-control" id="regno" type="text"  />
+												      </div>
+										  </div>
+
+                 </div>
+
+
+                <div class="col-sm-6">
+                     
+										<div class="form-group">
+										      <label class="col-sm-2 control-label">Roll_No*<span id="lblreg" style="color: red"></span></label>
+										      <div class="col-sm-7">
+										           <input class="form-control" id="rollno" type="number"/>
+										      </div>
+										</div>
+
+                </div>
+			                           
+                
+                 <div class="col-sm-6">
+
+			                           <div class="form-group">
+										      <label class="col-sm-2 control-label">First_Name*<span id="lbladd" style="color: red"></span></label>
+										      <div class="col-sm-7">
+										        <input class="form-control" id="fname" type="text" />
+										      </div>
+							          </div>
+
+                
+
+							 
+                           	
+               </div>
+
+
+
+                            
+                  <div class="col-sm-6">
+                    	
+		                    	<div class="form-group">
+									      <label class="col-sm-2 control-label">Last_Name*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-7">
+									        <input class="form-control" id="lname" type="text"  />
+									      </div>
+									  </div>
+
+                  </div>
+
+
+                  <div class="col-sm-6">
+
+                                     <div class="form-group">
+									      <label class="col-sm-2 control-label">Age*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-7">
+									        <input class="form-control" id="age" type="number"  />
+									      </div>
+									  </div>
+
+
+                  </div>
+
+
+
+
+
+                  <div class="col-sm-6">
+
+                                     <div class="form-group">
+									      <label class="col-sm-2 control-label">College*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-7">
+									        <input class="form-control" id="college" type="text"  />
+									      </div>
+									  </div>
+
+
+                  </div>
+
+
+
+                  <div class="col-sm-3">
+
+                                     <div class="form-group">
+									      <label class="col-sm-2 control-label">City*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-7">
+									        <input class="form-control" id="city" type="text"  />
+									      </div>
+									  </div>
+
+
+
+                  </div>
+
+
+                  <div class="col-sm-3">
+
+                                     <div class="form-group">
+									      <label class="col-sm-2 control-label">State*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-7">
+									        <input class="form-control" id="state" type="text"  />
+									      </div>
+									  </div>
+
+
+                  </div>
+
+
+                   <div class="col-sm-5">
+
+                                     <div class="form-group">
+									      <label class="col-sm-2 control-label">Country*<span id="lblroll" style="color: red"></span></label>
+									      <div class="col-sm-6">
+									        <input class="form-control" id="country" type="text"  />
+									      </div>
+									  </div>
+
+
+                  </div>
+
+
+
+
+
+                 
+                    
+
+
+                     <div class="form-footer" align="center">
+
+                             
+
+			                 <button type="submit"  name="submit" class="btn btn-info" id="submit_btn">Submit
+			                 
+			                 </button>
+
+                     </div> 
+             
+                 
+                     
+
+
+
+
+				</form>
+
+
+
+           </div>
+
+
+
+
+
+
+<script type="text/javascript">
+          	  
+
+$(document).ready(function(){
+
+
+  $('#submit_btn').click(function(e){
+
+                                        //console.log('clicked')
+        e.preventDefault(); // prevent refresh
+					                               
+
+
+	var student = {
+					                                              
+				  regno: $('#regno').val(),
+				 rollno: $('#rollno').val(),
+
+				name :
+					  {
+						firstname: $('#fname').val(),
+						lastname: $('#lname').val(),
+					 },
+				age : $('#age').val(),
+
+			collegename: $('#college').val(),
+			address :
+					 {
+
+					  city: $('#city').val(),
+					 state: $('#state').val(),
+				  country: $('#country').val()
+					}
+
+	}
+
+
+	$.ajax({
+
+
+			 method : "POST",
+
+			url : "/student/add",
+
+		  data : student,
+
+		success : function(result)
+				 {
+
+					console.log(result);
+				}
+
+
+				}); //ajax
+
+
+
+
+     }); //click
+
+
+
+                  
+
+
+
+     });  //ready documnt
+
+
+
+
+          </script>
+
+
+   </body>
+
+
+
+
+  </html>
